@@ -2,15 +2,28 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build aix darwin linux
+// +build darwin linux freebsd
 // +build cgo
 
 package api
 
-// #cgo aix LDFLAGS: -ldb2
-// #cgo darwin LDFLAGS: -ldb2
-// #cgo linux LDFLAGS: -ldb2
-// #include <sqlcli1.h>
+// #cgo darwin LDFLAGS: -L /usr/local/opt/unixodbc/lib -lodbc
+// #cgo darwin CFLAGS: -I /usr/local/opt/unixodbc/include
+// #cgo linux LDFLAGS: -lodbc
+// #cgo freebsd LDFLAGS: -L /usr/local/lib -lodbc
+// #cgo freebsd CFLAGS: -I/usr/local/include
+// #include <sql.h>
+// #include <sqlext.h>
+// #include <stdint.h>
+/*
+SQLRETURN sqlSetEnvUIntPtrAttr(SQLHENV environmentHandle, SQLINTEGER attribute, uintptr_t valuePtr, SQLINTEGER stringLength) {
+	return SQLSetEnvAttr(environmentHandle, attribute, (SQLPOINTER)valuePtr, stringLength);
+}
+
+SQLRETURN sqlSetConnectUIntPtrAttr(SQLHDBC connectionHandle, SQLINTEGER attribute, uintptr_t valuePtr, SQLINTEGER stringLength) {
+	return SQLSetConnectAttr(connectionHandle, attribute, (SQLPOINTER)valuePtr, stringLength);
+}
+*/
 import "C"
 
 const (
@@ -80,7 +93,8 @@ const (
 	SQL_XML             = C.SQL_XML
 
 	// TODO(lukemauldin): Not defined in sqlext.h. Using windows value, but it is not supported.
-	SQL_SS_XML = -152
+	SQL_SS_XML   = -152
+	SQL_SS_TIME2 = -154
 
 	SQL_C_CHAR           = C.SQL_C_CHAR
 	SQL_C_LONG           = C.SQL_C_LONG
@@ -158,4 +172,16 @@ type (
 
 	SQLLEN  C.SQLLEN
 	SQLULEN C.SQLULEN
+
+	SQLGUID C.SQLGUID
 )
+
+func SQLSetEnvUIntPtrAttr(environmentHandle SQLHENV, attribute SQLINTEGER, valuePtr uintptr, stringLength SQLINTEGER) (ret SQLRETURN) {
+	r := C.sqlSetEnvUIntPtrAttr(C.SQLHENV(environmentHandle), C.SQLINTEGER(attribute), C.uintptr_t(valuePtr), C.SQLINTEGER(stringLength))
+	return SQLRETURN(r)
+}
+
+func SQLSetConnectUIntPtrAttr(connectionHandle SQLHDBC, attribute SQLINTEGER, valuePtr uintptr, stringLength SQLINTEGER) (ret SQLRETURN) {
+	r := C.sqlSetConnectUIntPtrAttr(C.SQLHDBC(connectionHandle), C.SQLINTEGER(attribute), C.uintptr_t(valuePtr), C.SQLINTEGER(stringLength))
+	return SQLRETURN(r)
+}
