@@ -8,7 +8,7 @@ import (
 	"database/sql/driver"
 	"unsafe"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 type Conn struct {
@@ -46,7 +46,7 @@ func (c *Conn) Close() error {
 	return releaseHandle(h)
 }
 
-//Query method executes the statement with out prepare if no args provided, and a driver.ErrSkip otherwise (handled by sql.go to execute usual preparedStmt)
+// Query method executes the statement with out prepare if no args provided, and a driver.ErrSkip otherwise (handled by sql.go to execute usual preparedStmt)
 func (c *Conn) Query(query string, args []driver.Value) (driver.Rows, error) {
 	if len(args) > 0 {
 		// Not implemented for queries with parameters

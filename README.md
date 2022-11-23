@@ -4,7 +4,7 @@ Interface for GoLang to DB2 for z/OS, DB2 for LUW, DB2 for i.
 
 ## API Documentation
 
-> For complete list of go_ibm_db APIs and examples please check [APIDocumentation.md](https://github.com/ibmdb/go_ibm_db/blob/master/API_DOCUMENTATION.md)
+> For complete list of go_ibm_db APIs and examples please check [APIDocumentation.md](https://github.com/zerobit-tech/go_ibm_db/blob/master/API_DOCUMENTATION.md)
 
 ## Prerequisite
 
@@ -25,24 +25,24 @@ Environment variable DB2HOME name is changed to IBM_DB_HOME.
 ## How to Install in Windows
 ```
 You may install go_ibm_db using either of below commands
-go get -d github.com/ibmdb/go_ibm_db
-go install github.com/ibmdb/go_ibm_db/installer@latest
-go install github.com/ibmdb/go_ibm_db/installer@v0.4.2
+go get -d github.com/zerobit-tech/go_ibm_db
+go install github.com/zerobit-tech/go_ibm_db/installer@latest
+go install github.com/zerobit-tech/go_ibm_db/installer@v0.4.2
 
 If you already have a clidriver available in your system, add the path of the same to your Path windows environment variable
 Example: Path = C:\Program Files\IBM\IBM DATA SERVER DRIVER\bin
 
 
 If you do not have a clidriver in your system, go to installer folder where go_ibm_db is downloaded in your system, use below command: 
-(Example: C:\Users\uname\go\src\github.com\ibmdb\go_ibm_db\installer or C:\Users\uname\go\pkg\mod\github.com\ibmdb\go_ibm_db\installer 
+(Example: C:\Users\uname\go\src\github.com\zerobit-tech\go_ibm_db\installer or C:\Users\uname\go\pkg\mod\github.com\zerobit-tech\go_ibm_db\installer 
  where uname is the username ) and run setup.go file (go run setup.go).
 
 
 Set IBM_DB_HOME to clidriver downloaded path and
 set this path to your PATH windows environment variable
-(Example: Path=C:\Users\uname\go\src\github.com\ibmdb\clidriver)
-set IBM_DB_HOME=C:\Users\uname\go\src\github.com\ibmdb\clidriver
-set PATH=%PATH%;C:\Users\uname\go\src\github.com\ibmdb\clidriver\bin
+(Example: Path=C:\Users\uname\go\src\github.com\zerobit-tech\clidriver)
+set IBM_DB_HOME=C:\Users\uname\go\src\github.com\zerobit-tech\clidriver
+set PATH=%PATH%;C:\Users\uname\go\src\github.com\zerobit-tech\clidriver\bin
 or 
 set PATH=%PATH%;%IBM_DB_HOME%\bin
 
@@ -57,9 +57,9 @@ setenvwin.bat
 ## How to Install in Linux/Mac
 ```
 You may install go_ibm_db using either of below commands
-go get -d github.com/ibmdb/go_ibm_db
-go install github.com/ibmdb/go_ibm_db/installer@latest
-go install github.com/ibmdb/go_ibm_db/installer@v0.4.2
+go get -d github.com/zerobit-tech/go_ibm_db
+go install github.com/zerobit-tech/go_ibm_db/installer@latest
+go install github.com/zerobit-tech/go_ibm_db/installer@v0.4.2
 
 
 If you already have a clidriver available in your system, set the below environment variables with the clidriver path
@@ -76,20 +76,20 @@ export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Applications/clidriver/lib
 
 If you do not have a clidriver available in your system, use below command:
 go to installer folder where go_ibm_db is downloaded in your system 
-(Example: /home/uname/go/src/github.com/ibmdb/go_ibm_db/installer or /home/uname/go/pkg/mod/github.com/ibmdb/go_ibm_db/installer 
+(Example: /home/uname/go/src/github.com/zerobit-tech/go_ibm_db/installer or /home/uname/go/pkg/mod/github.com/zerobit-tech/go_ibm_db/installer 
 where uname is the username) and run setup.go file (go run setup.go)
 
 Set the below environment variables with the path of the clidriver downloaded
 
-export IBM_DB_HOME=/home/uname/go/src/github.com/ibmdb/clidriver
+export IBM_DB_HOME=/home/uname/go/src/github.com/zerobit-tech/clidriver
 export CGO_CFLAGS=-I$IBM_DB_HOME/include
 export CGO_LDFLAGS=-L$IBM_DB_HOME/lib
 Linux:
-export LD_LIBRARY_PATH=/home/uname/go/src/github.com/ibmdb/clidriver/lib
+export LD_LIBRARY_PATH=/home/uname/go/src/github.com/zerobit-tech/clidriver/lib
 or
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$IBM_DB_HOME/lib
 Mac:
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/home/uname/go/src/github.com/ibmdb/clidriver/lib
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/home/uname/go/src/github.com/zerobit-tech/clidriver/lib
 or
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$IBM_DB_HOME/lib
 
@@ -109,9 +109,9 @@ rm /usr/bin/gofmt
 cp /usr/local/go/bin/go /usr/bin/
 cp /usr/local/go/bin/gofmt /usr/bin/
 
-go install github.com/ibmdb/go_ibm_db/installer@v0.4.2
+go install github.com/zerobit-tech/go_ibm_db/installer@v0.4.2
 or 
-go install github.com/ibmdb/go_ibm_db/installer@latest
+go install github.com/zerobit-tech/go_ibm_db/installer@latest
 
 ```
 
@@ -135,7 +135,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/ibmdb/go_ibm_db"
+	_ "github.com/zerobit-tech/go_ibm_db"
 )
 
 func main() {
@@ -159,7 +159,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/ibmdb/go_ibm_db"
+	_ "github.com/zerobit-tech/go_ibm_db"
 )
 
 func Create_Con(con string) *sql.DB {
@@ -264,7 +264,7 @@ package main
 import (
 	_ "database/sql"
 	"fmt"
-	a "github.com/ibmdb/go_ibm_db"
+	a "github.com/zerobit-tech/go_ibm_db"
 )
 
 func main() {
@@ -304,7 +304,7 @@ import (
            "database/sql"
            "fmt"
            "time"
-          a "github.com/ibmdb/go_ibm_db"
+          a "github.com/zerobit-tech/go_ibm_db"
        )
 
 func ExecQuery(st *sql.Stmt) error {

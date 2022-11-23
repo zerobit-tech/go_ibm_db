@@ -11,7 +11,7 @@ import (
 	"reflect"
 	"unsafe"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 type Rows struct {
@@ -28,7 +28,7 @@ func (r *Rows) Columns() []string {
 
 func (r *Rows) ColumnTypePrecisionScale(index int) (precision, scale int64, ok bool) {
 	//TODO(Akhil):This functions retuns the precision and scale of column.
-	ok = false;
+	ok = false
 	var namelen api.SQLSMALLINT
 	namebuf := make([]byte, api.MAX_FIELD_SIZE)
 	ret := api.SQLColAttribute(r.os.h, api.SQLUSMALLINT(index+1), api.SQL_DESC_TYPE_NAME, api.SQLPOINTER(unsafe.Pointer(&namebuf[0])), (api.MAX_FIELD_SIZE), (*api.SQLSMALLINT)(&namelen), (api.SQLPOINTER)(unsafe.Pointer(nil)))
@@ -49,11 +49,11 @@ func (r *Rows) ColumnTypePrecisionScale(index int) (precision, scale int64, ok b
 		return 0, 0, false
 	}
 	if dbtype == "DECIMAL" {
-		ok = true;
+		ok = true
 	} else if dbtype == "NUMERIC" {
-		ok = true;
+		ok = true
 	} else if dbtype == "TIMESTAMP" {
-		ok = true;
+		ok = true
 	}
 	return precision, scale, ok
 }

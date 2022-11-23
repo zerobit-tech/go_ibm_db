@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 type Stats struct {

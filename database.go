@@ -5,7 +5,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 // CreateDb function will take the db name and user details as parameters

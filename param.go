@@ -11,7 +11,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 type Parameter struct {
@@ -289,7 +289,7 @@ func ExtractParameters(h api.SQLHSTMT) ([]Parameter, error) {
 	return ps, nil
 }
 
-//SqltoCtype function will convert the sql type to c type
+// SqltoCtype function will convert the sql type to c type
 func SqltoCtype(sqltype api.SQLSMALLINT) api.SQLSMALLINT {
 	switch sqltype {
 	case api.SQL_BIT:

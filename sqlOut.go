@@ -11,7 +11,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/ibmdb/go_ibm_db/api"
+	"github.com/zerobit-tech/go_ibm_db/api"
 )
 
 // Out struct is used to store the value of a OUT parameter in Stored Procedure
@@ -132,7 +132,7 @@ func newOut(hstmt api.SQLHSTMT, sqlOut *sql.Out, idx int) (*Out, error) {
 		if IsError(ret) {
 			return nil, NewError("SQLDescribeParam", hstmt)
 		}
-		data = make([]byte, parameterSize + 1)
+		data = make([]byte, parameterSize+1)
 		ctype = SqltoCtype(sqltype)
 		buflen = api.SQLLEN(len(data))
 		plen = &buflen

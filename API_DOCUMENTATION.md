@@ -440,7 +440,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ibmdb/go_ibm_db"
+	"github.com/zerobit-tech/go_ibm_db"
 )
 
 func main() {
@@ -477,7 +477,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/ibmdb/go_ibm_db"
+	"github.com/zerobit-tech/go_ibm_db"
 )
 
 func main() {
