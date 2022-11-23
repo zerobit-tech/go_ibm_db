@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build (darwin || linux || freebsd) && cgo
 // +build darwin linux freebsd
 // +build cgo
 
@@ -15,6 +16,7 @@ package api
 // #include <sql.h>
 // #include <sqlext.h>
 // #include <stdint.h>
+// #include<sqlcli.h>
 /*
 SQLRETURN sqlSetEnvUIntPtrAttr(SQLHENV environmentHandle, SQLINTEGER attribute, uintptr_t valuePtr, SQLINTEGER stringLength) {
 	return SQLSetEnvAttr(environmentHandle, attribute, (SQLPOINTER)valuePtr, stringLength);
@@ -84,13 +86,13 @@ const (
 	SQL_WVARCHAR        = C.SQL_WVARCHAR
 	SQL_WLONGVARCHAR    = C.SQL_WLONGVARCHAR
 	SQL_GUID            = C.SQL_GUID
-	SQL_BLOB            = C.SQL_BLOB
-	SQL_CLOB            = C.SQL_CLOB
+	SQL_BLOB            = C.SQL_CHAR
+	SQL_CLOB            = C.SQL_CHAR
 	SQL_SIGNED_OFFSET   = C.SQL_SIGNED_OFFSET
 	SQL_UNSIGNED_OFFSET = C.SQL_UNSIGNED_OFFSET
-	SQL_DBCLOB          = C.SQL_DBCLOB
-	SQL_BOOLEAN         = C.SQL_BOOLEAN
-	SQL_XML             = C.SQL_XML
+	SQL_DBCLOB          = C.SQL_C_CHAR
+	SQL_BOOLEAN         = C.SQL_CHAR
+	SQL_XML             = C.SQL_CHAR
 
 	// TODO(lukemauldin): Not defined in sqlext.h. Using windows value, but it is not supported.
 	SQL_SS_XML   = -152
@@ -113,7 +115,7 @@ const (
 	SQL_C_SBIGINT        = C.SQL_C_SBIGINT
 	SQL_C_UBIGINT        = C.SQL_C_UBIGINT
 	SQL_C_GUID           = C.SQL_C_GUID
-	SQL_C_DBCHAR         = C.SQL_C_DBCHAR
+	SQL_C_DBCHAR         = C.SQL_C_CHAR
 	SQL_C_TYPE_DATE      = C.SQL_C_TYPE_DATE
 	SQL_C_TYPE_TIME      = C.SQL_C_TYPE_TIME
 	SQL_C_XML            = C.SQL_XML
@@ -137,7 +139,7 @@ const (
 	SQL_DESC_NULLABLE      = C.SQL_DESC_NULLABLE
 	SQL_NULLABLE           = C.SQL_NULLABLE
 	SQL_NO_NULLS           = C.SQL_NO_NULLS
-	SQL_DECFLOAT           = C.SQL_DECFLOAT
+	SQL_DECFLOAT           = C.SQL_C_FLOAT
 	SQL_ATTR_PARAMSET_SIZE = C.SQL_ATTR_PARAMSET_SIZE
 
 	SQL_IS_UINTEGER = C.SQL_IS_UINTEGER
