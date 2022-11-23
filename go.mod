@@ -1,4 +1,4 @@
-module go_ibm_db
+module github.com/zerobit-tech/go_ibm_db
 
 go 1.19
 
