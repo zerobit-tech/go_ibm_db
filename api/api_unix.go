@@ -16,7 +16,6 @@ package api
 // #include <sql.h>
 // #include <sqlext.h>
 // #include <stdint.h>
-// #include<sqlcli.h>
 /*
 SQLRETURN sqlSetEnvUIntPtrAttr(SQLHENV environmentHandle, SQLINTEGER attribute, uintptr_t valuePtr, SQLINTEGER stringLength) {
 	return SQLSetEnvAttr(environmentHandle, attribute, (SQLPOINTER)valuePtr, stringLength);
@@ -118,7 +117,7 @@ const (
 	SQL_C_DBCHAR         = C.SQL_C_CHAR
 	SQL_C_TYPE_DATE      = C.SQL_C_TYPE_DATE
 	SQL_C_TYPE_TIME      = C.SQL_C_TYPE_TIME
-	SQL_C_XML            = C.SQL_XML
+	SQL_C_XML            = C.SQL_C_CHAR
 
 	SQL_COMMIT   = C.SQL_COMMIT
 	SQL_ROLLBACK = C.SQL_ROLLBACK
@@ -139,7 +138,7 @@ const (
 	SQL_DESC_NULLABLE      = C.SQL_DESC_NULLABLE
 	SQL_NULLABLE           = C.SQL_NULLABLE
 	SQL_NO_NULLS           = C.SQL_NO_NULLS
-	SQL_DECFLOAT           = C.SQL_C_FLOAT
+	SQL_DECFLOAT           = C.SQL_CHAR
 	SQL_ATTR_PARAMSET_SIZE = C.SQL_ATTR_PARAMSET_SIZE
 
 	SQL_IS_UINTEGER = C.SQL_IS_UINTEGER
@@ -176,6 +175,7 @@ type (
 	SQLULEN C.SQLULEN
 
 	SQLGUID C.SQLGUID
+	LONG    C.long
 )
 
 func SQLSetEnvUIntPtrAttr(environmentHandle SQLHENV, attribute SQLINTEGER, valuePtr uintptr, stringLength SQLINTEGER) (ret SQLRETURN) {

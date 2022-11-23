@@ -178,12 +178,12 @@ func (o *Out) Value() (driver.Value, error) {
 		}
 		s := (*[1 << 20]uint16)(p)[:len(buf)/2]
 		return utf16toutf8(s), nil
-	case api.SQL_C_DBCHAR:
-		if p == nil {
-			return nil, nil
-		}
-		s := (*[1 << 20]uint8)(p)[:len(buf)]
-		return removeNulls(s), nil
+	// case api.SQL_C_DBCHAR:
+	// 	if p == nil {
+	// 		return nil, nil
+	// 	}
+	// 	s := (*[1 << 20]uint8)(p)[:len(buf)]
+	// 	return removeNulls(s), nil
 	case api.SQL_C_TYPE_TIMESTAMP:
 		t := (*api.SQL_TIMESTAMP_STRUCT)(p)
 		r := time.Date(int(t.Year), time.Month(t.Month), int(t.Day),

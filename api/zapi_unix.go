@@ -125,32 +125,32 @@ func SQLSetConnectAttr(connectionHandle SQLHDBC, attribute SQLINTEGER, valuePtr 
 	return SQLRETURN(r)
 }
 
-func SQLColAttribute(statementHandle SQLHSTMT, ColumnNumber SQLUSMALLINT, FieldIdentifier SQLUSMALLINT, CharacterAttributePtr SQLPOINTER, BufferLength SQLSMALLINT, StringLengthPtr *SQLSMALLINT, NumericAttributePtr SQLPOINTER) (ret SQLRETURN) {
-	r := C.SQLColAttribute(C.SQLHSTMT(statementHandle), C.SQLUSMALLINT(ColumnNumber), C.SQLUSMALLINT(FieldIdentifier), C.SQLPOINTER(CharacterAttributePtr), C.SQLSMALLINT(BufferLength), (*C.SQLSMALLINT)(unsafe.Pointer(StringLengthPtr)), (C.SQLPOINTER)(NumericAttributePtr))
+func SQLColAttribute(statementHandle SQLHSTMT, ColumnNumber SQLUSMALLINT, FieldIdentifier SQLUSMALLINT, CharacterAttributePtr SQLPOINTER, BufferLength SQLSMALLINT, StringLengthPtr *SQLSMALLINT, NumericAttributePtr *SQLLEN) (ret SQLRETURN) {
+	r := C.SQLColAttribute(C.SQLHSTMT(statementHandle), C.SQLUSMALLINT(ColumnNumber), C.SQLUSMALLINT(FieldIdentifier), C.SQLPOINTER(CharacterAttributePtr), C.SQLSMALLINT(BufferLength), (*C.SQLSMALLINT)(unsafe.Pointer(StringLengthPtr)), (*C.SQLLEN)(NumericAttributePtr))
 	return SQLRETURN(r)
 }
 
-func SQLMoreResults(statementHandle SQLHSTMT) (ret SQLRETURN) {
-	r := C.SQLMoreResults(C.SQLHSTMT(statementHandle))
-	return SQLRETURN(r)
-}
+ 
 
 func SQLSetStmtAttr(statementHandle SQLHSTMT, attribute SQLINTEGER, valuePtr SQLPOINTER, stringLength SQLINTEGER) (ret SQLRETURN) {
 	r := C.SQLSetStmtAttrW(C.SQLHSTMT(statementHandle), C.SQLINTEGER(attribute), C.SQLPOINTER(valuePtr), C.SQLINTEGER(stringLength))
 	return SQLRETURN(r)
 }
 
-func SQLCreateDb(connectionHandle SQLHDBC, dbnamePtr *SQLWCHAR, dbnameLen SQLINTEGER, codeSetPtr *SQLWCHAR, codeSetLen SQLINTEGER, modePtr *SQLWCHAR, modeLen SQLINTEGER) (ret SQLRETURN) {
-	r := C.SQLCreateDbW(C.SQLHDBC(connectionHandle), (*C.SQLWCHAR)(unsafe.Pointer(dbnamePtr)), C.SQLINTEGER(dbnameLen), (*C.SQLWCHAR)(unsafe.Pointer(codeSetPtr)), C.SQLINTEGER(codeSetLen), (*C.SQLWCHAR)(unsafe.Pointer(modePtr)), C.SQLINTEGER(modeLen))
-	return SQLRETURN(r)
-}
+// func SQLCreateDb(connectionHandle SQLHDBC, dbnamePtr *SQLWCHAR, dbnameLen SQLINTEGER, codeSetPtr *SQLWCHAR, codeSetLen SQLINTEGER, modePtr *SQLWCHAR, modeLen SQLINTEGER) (ret SQLRETURN) {
+// 	r := C.SQLCreateDbW(C.SQLHDBC(connectionHandle), (*C.SQLWCHAR)(unsafe.Pointer(dbnamePtr)), C.SQLINTEGER(dbnameLen), (*C.SQLWCHAR)(unsafe.Pointer(codeSetPtr)), C.SQLINTEGER(codeSetLen), (*C.SQLWCHAR)(unsafe.Pointer(modePtr)), C.SQLINTEGER(modeLen))
+// 	return SQLRETURN(r)
+// }
 
-func SQLDropDb(connectionHandle SQLHDBC, dbnamePtr *SQLWCHAR, dbnameLen SQLINTEGER) (ret SQLRETURN) {
-	r := C.SQLDropDbW(C.SQLHDBC(connectionHandle), (*C.SQLWCHAR)(unsafe.Pointer(dbnamePtr)), C.SQLINTEGER(dbnameLen))
-	return SQLRETURN(r)
-}
+// func SQLDropDb(connectionHandle SQLHDBC, dbnamePtr *SQLWCHAR, dbnameLen SQLINTEGER) (ret SQLRETURN) {
+// 	r := C.SQLDropDbW(C.SQLHDBC(connectionHandle), (*C.SQLWCHAR)(unsafe.Pointer(dbnamePtr)), C.SQLINTEGER(dbnameLen))
+// 	return SQLRETURN(r)
+// }
 
 func SQLExecDirect(statementHandle SQLHSTMT, statementText *SQLWCHAR, textLength SQLINTEGER) (ret SQLRETURN) {
 	r := C.SQLExecDirectW(C.SQLHSTMT(statementHandle), (*C.SQLWCHAR)(unsafe.Pointer(statementText)), C.SQLINTEGER(textLength))
 	return SQLRETURN(r)
 }
+
+
+ 

@@ -306,14 +306,14 @@ func SqltoCtype(sqltype api.SQLSMALLINT) api.SQLSMALLINT {
 		return api.SQL_C_TYPE_DATE
 	case api.SQL_TYPE_TIME:
 		return api.SQL_C_TYPE_TIME
-	case api.SQL_CHAR, api.SQL_VARCHAR, api.SQL_CLOB, api.SQL_LONGVARCHAR:
+	case api.SQL_CHAR, api.SQL_VARCHAR, api.SQL_LONGVARCHAR:
 		return api.SQL_C_CHAR
-	case api.SQL_WCHAR, api.SQL_WVARCHAR, api.SQL_WLONGVARCHAR, api.SQL_SS_XML:
-		return api.SQL_C_WCHAR
-	case api.SQL_BINARY, api.SQL_VARBINARY, api.SQL_BLOB, api.SQL_LONGVARBINARY:
-		return api.SQL_C_BINARY
-	case api.SQL_DBCLOB:
-		return api.SQL_C_DBCHAR
+	// case api.SQL_WCHAR, api.SQL_WVARCHAR, api.SQL_WLONGVARCHAR, api.SQL_SS_XML:
+	// 	return api.SQL_C_WCHAR
+	// case api.SQL_BINARY, api.SQL_VARBINARY, api.SQL_LONGVARBINARY:
+	// 	return api.SQL_C_BINARY
+	// case api.SQL_DBCLOB:
+	// 	return api.SQL_C_DBCHAR
 	default:
 		panic(fmt.Errorf("unsupported param type %v at sql.out", sqltype))
 	}
